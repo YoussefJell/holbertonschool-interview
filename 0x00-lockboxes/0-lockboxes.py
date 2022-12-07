@@ -4,16 +4,13 @@
 
 def canUnlockAll(boxes):
     """func"""
-    unlocked = list(boxes[0])
-
-    for i in range(0, len(boxes) - 1):
-        for key in boxes[i]:
-            for elem in boxes[key]:
-                unlocked.append(elem)
-    if 0 in unlocked:
-        if len(set(unlocked)) == len(boxes):
-            return True
-    else:
-        if len(set(unlocked)) == len(boxes) - 1:
-            return True
+    unlocked_boxes = [0]
+    for i, box in enumerate(boxes):
+        if not box:
+            continue
+        for key in box:
+            if key < len(boxes) and key != i and key not in unlocked_boxes:
+                unlocked_boxes.append(key)
+    if len(unlocked_boxes) == len(boxes):
+        return True
     return False

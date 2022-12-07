@@ -1,5 +1,9 @@
 #!/usr/bin/python3
+"""module 0"""
+
+
 def canUnlockAll(boxes):
+    """func"""
     unlocked = list(boxes[0])
 
     for i in range(0, len(boxes) - 1):

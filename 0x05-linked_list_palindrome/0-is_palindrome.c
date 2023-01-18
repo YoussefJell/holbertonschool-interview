@@ -43,7 +43,7 @@ int is_palindrome(listint_t **head)
 	{
 		if ((*head)[i].n == (*head)[listLen * 2].n)
 		{
-			listLen -= 8;
+			listLen -= sizeof(listint_t *);
 			continue;
 		}
 		return (0);

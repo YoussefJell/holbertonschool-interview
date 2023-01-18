@@ -30,7 +30,7 @@ int is_palindrome(listint_t **head)
 	int listLen, i;
 
 	if (head == NULL || *head == NULL)
-		return (1);
+		return (0);
 
 	listLen = sllLen(head);
 

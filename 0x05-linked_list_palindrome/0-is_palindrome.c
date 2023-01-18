@@ -29,8 +29,8 @@ int is_palindrome(listint_t **head)
 {
 	int listLen, i;
 
-	if (head == NULL || *head == NULL)
-		return (0);
+	if (head == NULL || *head == NULL || (*head)->next == NULL)
+		return (1);
 
 	listLen = sllLen(head);
 
@@ -43,7 +43,7 @@ int is_palindrome(listint_t **head)
 	{
 		if ((*head)[i].n == (*head)[listLen * 2].n)
 		{
-			listLen = listLen - 8;
+			listLen -= 8;
 			continue;
 		}
 		return (0);

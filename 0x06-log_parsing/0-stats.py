@@ -8,7 +8,6 @@ def recap(codeMap, fileSize):
         print('{}: {}'.format(key, val))
 
 
-atoi()
 count = 1
 statusCodeMap = {}
 fileSizes = []

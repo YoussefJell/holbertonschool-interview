@@ -27,7 +27,6 @@ try:
         statusCodeMap[newList[-2]] = statusCodeMap.get(newList[-2], 0) + 1
         if count % 10 == 0:
             recap(statusCodeMap, sum(fileSizes))
-            statusCodeMap = {}
         count += 1
 except KeyboardInterrupt:
     recap(statusCodeMap, sum(fileSizes))

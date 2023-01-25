@@ -3,9 +3,9 @@ import sys
 
 
 def recap(codeMap, fileSize):
-    print(f'File size: {fileSize}')
+    print('File size: {}'.format(fileSize))
     for key, val in sorted(codeMap.items()):
-        print(f'{key}: {val}')
+        print('{}: {}'.format(key, val))
 
 
 count = 1

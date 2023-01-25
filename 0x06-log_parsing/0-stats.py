@@ -28,7 +28,6 @@ try:
         if count % 10 == 0:
             recap(statusCodeMap, sum(fileSizes))
             statusCodeMap = {}
-            fileSizes = []
         count += 1
 except KeyboardInterrupt:
     recap(statusCodeMap, sum(fileSizes))

@@ -11,8 +11,8 @@ fileSizes = []
 def recap(codeMap, fileSizes):
     """function that recaps what has been counted"""
     print('File size: {}'.format(fileSizes))
-    for key, val in sorted(codeMap.items()):
-        print('{}: {}'.format(key, val))
+    for key in sorted(codeMap.keys()):
+        print('{}: {}'.format(key, codeMap[key]))
 
 
 try:

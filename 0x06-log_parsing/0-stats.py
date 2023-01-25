@@ -8,12 +8,16 @@ def recap(codeMap, fileSize):
         print('{}: {}'.format(key, val))
 
 
+atoi()
 count = 1
 statusCodeMap = {}
 fileSizes = []
 for line in sys.stdin:
     newList = line.split(" ")
-    fileSizes.append(int(newList[-1]))
+    try:
+        fileSizes.append(int(newList[-1]))
+    except:
+        continue
     statusCodeMap[newList[-2]] = statusCodeMap.get(newList[-2], 0) + 1
     if count % 10 == 0:
         fileSize = sum(fileSizes)

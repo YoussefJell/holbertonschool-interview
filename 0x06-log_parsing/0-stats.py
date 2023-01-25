@@ -16,6 +16,8 @@ def recap(codeMap, fileSizes):
 try:
     for line in sys.stdin:
         newList = line.split(" ")
+        if len(newList) > 9 or len(newList) < 9:
+            continue
         try:
             fileSizes.append(int(newList[-1]))
         except:

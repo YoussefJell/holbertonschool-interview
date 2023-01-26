@@ -5,7 +5,7 @@ import sys
 
 count = 1
 statusCodeMap = {}
-fileSizes = []
+fileSizes = 0
 
 
 def recap(codeMap, fileSizes):
@@ -21,13 +21,13 @@ try:
         if len(newList) > 9 or len(newList) < 9:
             continue
         try:
-            fileSizes.append(int(newList[-1]))
+            fileSizes += newList[-1]
         except:
             continue
         statusCodeMap[newList[-2]] = statusCodeMap.get(newList[-2], 0) + 1
         if count % 10 == 0:
-            recap(statusCodeMap, sum(fileSizes))
+            recap(statusCodeMap, fileSizes)
         count += 1
 except KeyboardInterrupt:
-    recap(statusCodeMap, sum(fileSizes))
+    recap(statusCodeMap, fileSizes)
     raise

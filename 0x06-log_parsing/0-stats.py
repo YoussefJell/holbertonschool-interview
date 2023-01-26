@@ -31,3 +31,5 @@ try:
 except KeyboardInterrupt:
     recap(statusCodeMap, fileSizes)
     raise
+else:
+    recap(statusCodeMap, fileSizes)

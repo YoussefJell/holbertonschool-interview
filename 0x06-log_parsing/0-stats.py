@@ -21,7 +21,7 @@ try:
         if len(newList) > 9 or len(newList) < 9:
             continue
         try:
-            fileSizes += newList[-1]
+            fileSizes += int(newList[-1])
         except:
             continue
         statusCodeMap[newList[-2]] = statusCodeMap.get(newList[-2], 0) + 1

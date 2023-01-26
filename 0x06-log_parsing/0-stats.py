@@ -3,7 +3,7 @@
 import sys
 
 
-count = 0
+count = 1
 statusCodeMap = {}
 fileSizes = []
 
@@ -12,8 +12,7 @@ def recap(codeMap, fileSizes):
     """function that recaps what has been counted"""
     print('File size: {}'.format(fileSizes))
     for key in sorted(codeMap.keys()):
-        if codeMap[key] > 0:
-            print('{}: {}'.format(key, codeMap[key]))
+        print('{}: {}'.format(key, codeMap[key]))
 
 
 try:
@@ -26,10 +25,9 @@ try:
         except:
             continue
         statusCodeMap[newList[-2]] = statusCodeMap.get(newList[-2], 0) + 1
-        count += 1
-        if count == 10:
+        if count % 10 == 0:
             recap(statusCodeMap, sum(fileSizes))
-            count = 0
+        count += 1
 except KeyboardInterrupt:
     recap(statusCodeMap, sum(fileSizes))
     raise

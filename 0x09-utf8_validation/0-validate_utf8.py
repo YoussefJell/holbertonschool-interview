@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" module cmnt """
+
+
 def validUTF8(data):
     """ validates utf 8 """
     count = 0

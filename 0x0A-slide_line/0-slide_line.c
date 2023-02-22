@@ -9,6 +9,7 @@
 void slide_left(int *line, size_t size)
 {
 	int i, j;
+
 	for (i = 0; i < (int)size; i++)
 	{
 		if (line[i] == 0)
@@ -35,6 +36,7 @@ void slide_left(int *line, size_t size)
 	for (i = j; i < (int)size; i++)
 		line[i] = 0;
 }
+
 /**
  * slide_right - slides array to right
  *
@@ -45,6 +47,7 @@ void slide_left(int *line, size_t size)
 void slide_right(int *line, size_t size)
 {
 	int i, j;
+
 	for (i = (int)size - 1; i >= 0; i--)
 	{
 		if (line[i] == 0)
@@ -71,6 +74,7 @@ void slide_right(int *line, size_t size)
 	for (i = j; i >= 0; i--)
 		line[i] = 0;
 }
+
 /**
  * slide_line - slides array like in 2048 game horizontal only
  *
@@ -81,9 +85,10 @@ void slide_right(int *line, size_t size)
  */
 int slide_line(int *line, size_t size, int direction)
 {
-	if (line == NULL || size < 1 || (direction != SLIDE_LEFT && direction != SLIDE_RIGHT))
+	if (line == NULL || size < 1 ||
+		(direction != SLIDE_LEFT && direction != SLIDE_RIGHT))
 	{
-		return 0;
+		return (0);
 	}
 	if (direction == SLIDE_LEFT)
 	{
@@ -93,5 +98,5 @@ int slide_line(int *line, size_t size, int direction)
 	{
 		slide_right(line, size);
 	}
-	return 1;
+	return (1);
 }

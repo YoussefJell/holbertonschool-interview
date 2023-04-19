@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ rain module """
+
+
 def rain(walls):
     """ Coment """
     n = len(walls)

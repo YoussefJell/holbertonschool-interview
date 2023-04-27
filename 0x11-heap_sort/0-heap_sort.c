@@ -53,7 +53,7 @@ void sift_down(int *array, int root, int end)
  */
 void heap_sort(int *array, size_t size)
 {
-  int i, j;
+  int i;
   for (i = (size / 2) - 1; i >= 0; i--)
   {
     sift_down(array, i, size - 1);

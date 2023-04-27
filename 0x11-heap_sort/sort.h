@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void print_array(const int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void sift_down(int *array, int root, int end);
 void swap(int *a, int *b);

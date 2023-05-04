@@ -6,6 +6,7 @@
  * @low: low
  * @high: high
  * @value: value
+ *
  * Return: value
  */
 int advanced_binary_recursive(int *array, int low, int high, int value)
@@ -37,6 +38,7 @@ int advanced_binary_recursive(int *array, int low, int high, int value)
  * @array: array
  * @size: size
  * @value: value
+ *
  * Return: int
  */
 int advanced_binary(int *array, size_t size, int value)

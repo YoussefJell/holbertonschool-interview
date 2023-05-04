@@ -12,6 +12,7 @@
 int advanced_binary_recursive(int *array, int low, int high, int value)
 {
 	int mid, i;
+
 	if (low > high)
 		return (-1);
 

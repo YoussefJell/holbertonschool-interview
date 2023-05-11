@@ -6,7 +6,7 @@ def count_words(subreddit, word_list, kw_count={}, next_page=None, repkw={}):
     """ function count_words """
 
     headers = {"User-Agent": "Goomba"}
-    api_url = f'https://reddit.com/r/{subreddit}/hot.json'
+    api_url = 'https://reddit.com/r/{}/hot.json'.format(subreddit)
     params = {'after': next_page} if next_page else {}
 
     response = requests.get(api_url, headers=headers, params=params)

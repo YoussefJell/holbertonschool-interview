@@ -1,6 +1,9 @@
 import requests
+""" module """
 
-def count_words(subreddit, word_list, keyword_count={}, next_page=None, reap_keyword={}):
+
+def count_words(subreddit, word_list, kw_count={}, next_page=None, repkw={}):
+    """ func """
     headers = {"User-Agent": "Goomba"}
     api_url = f'https://reddit.com/r/{subreddit}/hot.json'
     params = {'after': next_page} if next_page else {}
@@ -13,24 +16,24 @@ def count_words(subreddit, word_list, keyword_count={}, next_page=None, reap_key
     next_page = data.get('after')
     posts = data.get('children', [])
 
-    if not keyword_count:
-        keyword_count = {word: 0 for word in word_list}
-        reap_keyword = {word: word_list.count(word) for word in word_list}
+    if not kw_count:
+        kw_count = {word: 0 for word in word_list}
+        repkw = {word: word_list.count(word) for word in word_list}
 
     for post in posts:
         title_words = post['data'].get('title', '').split()
         for word in title_words:
-            for key in keyword_count:
+            for key in kw_count:
                 if word.lower() == key.lower():
-                    keyword_count[key] += 1
+                    kw_count[key] += 1
 
     if next_page:
-        count_words(subreddit, word_list, keyword_count, next_page, reap_keyword)
+        count_words(subreddit, word_list, kw_count, next_page, repkw)
     else:
-        for keyword, count in reap_keyword.items():
-            keyword_count[keyword] *= count
+        for keyword, count in repkw.items():
+            kw_count[keyword] *= count
 
-        sorted_results = sorted(keyword_count.items(), key=lambda x: (-x[1], x[0]))
+        sorted_results = sorted(kw_count.items(), key=lambda x: (-x[1], x[0]))
         for keyword, count in sorted_results:
             if count > 0:
                 print(f'{keyword}: {count}')

@@ -37,4 +37,4 @@ def count_words(subreddit, word_list, kw_count={}, next_page=None, repkw={}):
         sorted_results = sorted(kw_count.items(), key=lambda x: (-x[1], x[0]))
         for keyword, count in sorted_results:
             if count > 0:
-                print(f'{keyword}: {count}')
+                print('{}: {}'.format(keyword, count))

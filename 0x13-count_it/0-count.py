@@ -5,49 +5,40 @@ main module
 import requests
 
 
-def count_words(subreddit, word_list, keyowrds={}, next_pg=None, rep_kw={}):
-    """all hot posts by keyword"""
-    headers = {"User-Agent": "Goomber"}
+def count_words(subreddit, word_list, after=None, count_dict=None):
+    """
+    Function to count reddit subreddits
+    """
+    if count_dict is None:
+        count_dict = {}
 
-    if next_pg:
-        subr = requests.get('https://reddit.com/r/' + subreddit +
-                            '/hot.json?after=' + next_pg, headers=headers)
+    if after is None:
+        url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     else:
-        subr = requests.get('https://reddit.com/r/' + subreddit +
-                            '/hot.json', headers=headers)
+        url = "https://www.reddit.com/r/{}/hot.json?after={}".format(
+            subreddit, after)
 
-    if subr.status_code == 404:
-        return
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if keyowrds == {}:
-        for word in word_list:
-            keyowrds[word] = 0
-            rep_kw[word] = word_list.count(word)
+    if response.status_code == 200:
+        data = response.json()
+        posts = data['data']['children']
+        for post in posts:
+            title = post['data']['title']
+            words = title.lower().split()
+            for word in word_list:
+                if word.lower() in words:
+                    count_dict[word] = count_dict.get(
+                        word, 0) + words.count(word.lower())
 
-    subr_dict = subr.json()
-    subr_data = subr_dict['data']
-    next_pg = subr_data['after']
-    subr_posts = subr_data['children']
-
-    for post in subr_posts:
-        post_data = post['data']
-        post_title = post_data['title']
-        title_words = post_title.split()
-        for w in title_words:
-            for key in keyowrds:
-                if w.lower() == key.lower():
-                    keyowrds[key] += 1
-
-    if next_pg:
-        count_words(subreddit, word_list, keyowrds, next_pg, rep_kw)
-
+        after = data['data']['after']
+        if after is not None:
+            return count_words(subreddit, word_list, after, count_dict)
     else:
-        for key, val in rep_kw.items():
-            if val > 1:
-                keyowrds[key] *= val
+        pass
 
-        sorted_abc = sorted(keyowrds.items(), key=lambda x: x[0])
-        sorted_res = sorted(sorted_abc, key=lambda x: (-x[1], x[0]))
-        for res in sorted_res:
-            if res[1] > 0:
-                print('{}: {}'.format(res[0], res[1]))
+    sorted_counts = sorted(count_dict.items(), key=lambda x: (-x[1], x[0]))
+    for word, count in sorted_counts:
+        print("{}: {}".format(word.lower(), count))

@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void multiply(const char* num1, const char* num2);
+void multiply(char *num1, char *num2);
 int _putchar(char c);
 
 #endif

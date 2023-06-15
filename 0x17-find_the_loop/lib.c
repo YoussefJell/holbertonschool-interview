@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "lists.h"
 
-
 /**
  * struct listdone_s - singly linked list
  * @node: node
@@ -17,7 +16,6 @@ typedef struct listdone_s
 	const struct listint_s *node;
 	struct listdone_s *next;
 } listdone_t;
-
 
 /**
  * _find_in_list - Search for a node in a list
